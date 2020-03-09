@@ -1,0 +1,22 @@
+# CI for openseaChest through Travis CI
+language: c
+
+branches:
+  only:
+  - master
+  - develop
+  - "/^v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+matrix:
+  include:
+  - os: linux
+    sudo: false
+    compiler: clang
+    dist: xenial
+    before_script: cd Make/gcc
+    script: make release
+  - os: linux
+    sudo: false
+    compiler: gcc
+    dist: xenial
+    before_script: cd Make/gcc
+    script: make release
